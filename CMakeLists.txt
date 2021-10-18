@@ -28,8 +28,14 @@ file(GLOB_RECURSE OPERATIONS_ON_MATRICES_SOURCES
     operations_on_matrices/*.cpp
 )
 
+set(SMOOTH_IMAGES "smooth_images")
+file(GLOB_RECURSE SMOOTH_IMAGES_SOURCES
+    smooth_images/*.cpp
+)
+
 # Compiling target
 add_executable(${OPERATIONS_ON_MATRICES} ${OPERATIONS_ON_MATRICES_SOURCES})
+add_executable(${SMOOTH_IMAGES} ${SMOOTH_IMAGES_SOURCES})
 
 # Find OpenCV
 find_package(OpenCV REQUIRED)
@@ -43,6 +49,7 @@ endif()
 include_directories(${OpenCV_INCLUDE_DIRS})
 
 target_link_libraries(${OPERATIONS_ON_MATRICES} ${OpenCV_LIBS})
+target_link_libraries(${SMOOTH_IMAGES} ${OpenCV_LIBS})
 
 if(WITH_CUDA)
     target_link_libraries(${OPERATIONS_ON_MATRICES} ${CUDA_LIBRARIES})
