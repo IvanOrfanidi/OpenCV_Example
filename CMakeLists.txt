@@ -33,9 +33,15 @@ file(GLOB_RECURSE SMOOTH_IMAGES_SOURCES
     smooth_images/*.cpp
 )
 
+set(INTEGRAL_MATRIX "integral_matrix")
+file(GLOB_RECURSE INTEGRAL_MATRIX_SOURCES
+    integral_matrix/*.cpp
+)
+
 # Compiling target
 add_executable(${OPERATIONS_ON_MATRICES} ${OPERATIONS_ON_MATRICES_SOURCES})
 add_executable(${SMOOTH_IMAGES} ${SMOOTH_IMAGES_SOURCES})
+add_executable(${INTEGRAL_MATRIX} ${INTEGRAL_MATRIX_SOURCES})
 
 # Find OpenCV
 find_package(OpenCV REQUIRED)
@@ -50,6 +56,7 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 
 target_link_libraries(${OPERATIONS_ON_MATRICES} ${OpenCV_LIBS})
 target_link_libraries(${SMOOTH_IMAGES} ${OpenCV_LIBS})
+target_link_libraries(${INTEGRAL_MATRIX} ${OpenCV_LIBS})
 
 if(WITH_CUDA)
     target_link_libraries(${OPERATIONS_ON_MATRICES} ${CUDA_LIBRARIES})
